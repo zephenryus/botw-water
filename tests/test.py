@@ -24,11 +24,11 @@ def water_to_binary_string():
     """
     Tests that data is recompiled correctly and matches the original file
     """
-    data = water.read_water("assets/5000000000.water")
+    data = water.read_water("assets/5000000000.water.extm")
     binary_data = water.compile_water(data)
 
     hash_md5 = hashlib.md5()
-    with open("assets/5000000000.water", "rb") as infile:
+    with open("assets/5000000000.water.extm", "rb") as infile:
         for chunk in iter(lambda: infile.read(4096), b""):
             hash_md5.update(chunk)
 
@@ -49,27 +49,27 @@ def water_to_binary_file():
     """
     Tests reading data from water file then writes the same data back as a binary
     """
-    data = water.read_water("assets/5000000000.water")
-    water.write_water(data, "output/5000000000.water")
-    print("The files are the same: {0}".format(filecmp.cmp("assets/5000000000.water", "output/5000000000.water")))
+    data = water.read_water("assets/5000000000.water.extm")
+    water.write_water(data, "output/5000000000.water.extm")
+    print("The files are the same: {0}".format(filecmp.cmp("assets/5000000000.water.extm", "output/5000000000.water.extm")))
 
 
 def water_to_image():
     """
     Tests reading data from water file then generating waterrial map images
     """
-    data = water.read_water("assets/5000000000.water")
-    water.generate_map(data, 'output/5000000000.water.tiff')
-    water.generate_waterrial_0_map(data, 'output/5000000000.water00.tiff')
-    water.generate_waterrial_0_map(data, 'output/5000000000.water01.tiff', color_as_value=True)
-    water.generate_waterrial_1_map(data, 'output/5000000000.water10.tiff')
-    water.generate_waterrial_1_map(data, 'output/5000000000.water11.tiff', color_as_value=True)
+    data = water.read_water("assets/5000000000.water.extm")
+    water.generate_map(data, 'output/5000000000.water.extm.tiff')
+    water.generate_waterrial_0_map(data, 'output/5000000000.water.extm00.tiff')
+    water.generate_waterrial_0_map(data, 'output/5000000000.water.extm01.tiff', color_as_value=True)
+    water.generate_waterrial_1_map(data, 'output/5000000000.water.extm10.tiff')
+    water.generate_waterrial_1_map(data, 'output/5000000000.water.extm11.tiff', color_as_value=True)
 
 
 def main():
     water_to_json()
-    # water_to_binary_string()
-    # water_to_binary_file()
+    water_to_binary_string()
+    water_to_binary_file()
     # water_to_image()
 
 

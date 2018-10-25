@@ -14,5 +14,13 @@ class Water:
         return height * Water.height_scale_factor
 
     @staticmethod
+    def to_int(height: float) -> int:
+        return round(height / Water.height_scale_factor)
+
+    @staticmethod
     def normalize_flow(flow: int) -> float:
         return ((flow / 65335) * 2) - 1
+
+    @staticmethod
+    def denormalize_flow(flow: float) -> int:
+        return round(((flow + 1) / 2) * 65335)
