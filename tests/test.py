@@ -51,7 +51,8 @@ def water_to_binary_file():
     """
     data = water.read_water("assets/5000000000.water.extm")
     water.write_water(data, "output/5000000000.water.extm")
-    print("The files are the same: {0}".format(filecmp.cmp("assets/5000000000.water.extm", "output/5000000000.water.extm")))
+    print("The files are the same: {0}".format(
+        filecmp.cmp("assets/5000000000.water.extm", "output/5000000000.water.extm")))
 
 
 def water_to_image():
@@ -59,18 +60,18 @@ def water_to_image():
     Tests reading data from water file then generating waterrial map images
     """
     data = water.read_water("assets/5000000000.water.extm")
-    water.generate_map(data, 'output/5000000000.water.extm.tiff')
-    water.generate_waterrial_0_map(data, 'output/5000000000.water.extm00.tiff')
-    water.generate_waterrial_0_map(data, 'output/5000000000.water.extm01.tiff', color_as_value=True)
-    water.generate_waterrial_1_map(data, 'output/5000000000.water.extm10.tiff')
-    water.generate_waterrial_1_map(data, 'output/5000000000.water.extm11.tiff', color_as_value=True)
+    water.generate_height_map(data, 'output/5000000000.water.extm.height.tiff')
+    water.generate_material_map(data, 'output/5000000000.water.extm.mate.tiff')
+    water.generate_x_flow_map(data, 'output/5000000000.water.extm.x-flow.tiff')
+    water.generate_z_flow_map(data, 'output/5000000000.water.extm.z-flow.tiff')
+    water.generate_xz_flow_map(data, 'output/5000000000.water.extm.xz-flow.tiff')
 
 
 def main():
     water_to_json()
     water_to_binary_string()
     water_to_binary_file()
-    # water_to_image()
+    water_to_image()
 
 
 if __name__ == "__main__":
