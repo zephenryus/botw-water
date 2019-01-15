@@ -32,3 +32,21 @@ def read_water(path: str, verbose=False) -> list:
                 ))
 
     return water_array
+
+
+def read_bytes(data: memoryview, verbose=False) -> list:
+    water_array = []
+
+    for i in range(4096):
+        pos = i * 8
+        height, x_axis_flow_rate, z_axis_flow_rate, material_check, material_index = \
+            struct.unpack('<3H2B', data[pos:pos + 8])
+        water_array.append(Water(
+            Water.actual_height(height),
+            Water.normalize_flow(x_axis_flow_rate),
+            Water.normalize_flow(z_axis_flow_rate),
+            material_check,
+            material_index
+        ))
+
+    return water_array
